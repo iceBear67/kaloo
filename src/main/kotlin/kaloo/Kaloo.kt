@@ -6,6 +6,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import kaloo.view.Home
 import kotlin.system.exitProcess
 
 object Kaloo {
@@ -14,15 +15,16 @@ object Kaloo {
         println("Hello, world!")
         loadWindow()
     }
+
     private fun loadWindow(){
         application {
             MaterialTheme {
                 Window(
                     title = "Kaloo",
                     onCloseRequest = ::exitApplication,
-                    state = rememberWindowState(width = 1000.dp,height = 600.dp)
+                    state = rememberWindowState()
                 ){
-
+                    Home()
                 }
             }
         }
