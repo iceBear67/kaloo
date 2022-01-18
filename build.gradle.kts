@@ -5,6 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.5.31"
     id("org.jetbrains.compose") version "1.0.0"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "io.ib67"
@@ -18,6 +19,10 @@ repositories {
 
 dependencies {
     implementation(compose.desktop.currentOs)
+    implementation("org.ktorm:ktorm-core:3.4.1")
+    val miraiVersion = "2.9.2"
+    api("net.mamoe", "mirai-core-api", miraiVersion)     // 编译代码使用
+    runtimeOnly("net.mamoe", "mirai-core", miraiVersion) // 运行时使用
 }
 
 tasks.withType<KotlinCompile> {
@@ -26,7 +31,7 @@ tasks.withType<KotlinCompile> {
 
 compose.desktop {
     application {
-        mainClass = "MainKt"
+        mainClass = "kaloo.Kaloo"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "kaloo"
